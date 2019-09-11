@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author:wangyi
@@ -68,8 +69,14 @@ public class TaskUtils {
         }
         clazz = object.getClass();
         Method method = null;
+        List<Class> parameterClasses = scheduleJob.getParameterClasses();
         try {
-            method = clazz.getDeclaredMethod(scheduleJob.getMethodName(), new Class[] { String.class });
+            if(parameterClasses == null || parameterClasses.size() == 0) {
+                method = clazz.getDeclaredMethod(scheduleJob.getMethodName(), new Class[]{});
+            }else{
+                Class[] classes = parameterClasses.toArray(new Class[0]);
+                method = clazz.getDeclaredMethod(scheduleJob.getMethodName(), classes);
+            }
         } catch (NoSuchMethodException e) {
             flag = false;
             log.error("任务名称 = [" + scheduleJob.getJobName() + "]---------------未启动成功，方法名设置错误！！！");
@@ -87,7 +94,11 @@ public class TaskUtils {
         }
         if (method != null) {
             try {
-                method.invoke(object, scheduleJob.getJobData());
+                if(scheduleJob.getJobData() == null || scheduleJob.getJobData().length() == 0){
+                    method.invoke(object);
+                }else{
+                    method.invoke(object,scheduleJob.getJobData());
+                }
             } catch (IllegalAccessException e) {
                 flag = false;
                 STimetaskLogService sTimetaskLogService = (STimetaskLogService) ApplicationContextUtils.getBean(STimetaskLogService.class);

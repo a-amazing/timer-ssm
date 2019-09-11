@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface STimetaskService {
     List<WxTimetask> selectByExample(WxTimetaskExample example);
+
+    void insert(WxTimetask timetask);
 }

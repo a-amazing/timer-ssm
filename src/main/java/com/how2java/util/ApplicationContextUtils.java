@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
  * @author:wangyi
  * @Date:2019/9/9
  */
-@Component
 public class ApplicationContextUtils {
 
     /**

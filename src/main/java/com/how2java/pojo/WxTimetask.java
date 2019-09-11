@@ -37,7 +37,9 @@ public class WxTimetask {
 
     private Date modifyDate;
 
-    public WxTimetask(String id, String name, String groupName, Date startTime, Date endTime, String cron, String jobStatus, String planStatus, Boolean isConcurrent, String jobData, String methodName, String beanName, String description, String createUserId, Date createDate, String modifyUserId, Date modifyDate) {
+    private String parameterClasses;
+
+    public WxTimetask(String id, String name, String groupName, Date startTime, Date endTime, String cron, String jobStatus, String planStatus, Boolean isConcurrent, String jobData, String methodName, String beanName, String description, String createUserId, Date createDate, String modifyUserId, Date modifyDate,String parameterClasses) {
         this.id = id;
         this.name = name;
         this.groupName = groupName;
@@ -55,6 +57,7 @@ public class WxTimetask {
         this.createDate = createDate;
         this.modifyUserId = modifyUserId;
         this.modifyDate = modifyDate;
+        this.parameterClasses = parameterClasses;
     }
 
     public WxTimetask() {
@@ -199,5 +202,17 @@ public class WxTimetask {
 
     public boolean getConcurrent() {
         return getIsConcurrent();
+    }
+
+    public void setConcurrent(Boolean concurrent) {
+        isConcurrent = concurrent;
+    }
+
+    public String getParameterClasses() {
+        return parameterClasses;
+    }
+
+    public void setParameterClasses(String parameterClasses) {
+        this.parameterClasses = parameterClasses;
     }
 }

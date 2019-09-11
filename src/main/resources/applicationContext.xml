@@ -23,7 +23,7 @@
 	      <value>com.mysql.jdbc.Driver</value>
 	  </property>
 	  <property name="url">
-	      <value>jdbc:mysql://localhost:3306/quartz?characterEncoding=UTF-8</value>
+	      <value>jdbc:mysql://localhost:3306/task?characterEncoding=UTF-8</value>
 
 	  </property>
 	  <property name="username">
@@ -63,4 +63,13 @@
 
 	<!-- 初始化springUtils -->
 	<bean id="springUtils" class="com.how2java.util.SpringUtils" />
+	<bean id="applicationUtils" class="com.how2java.util.ApplicationContextUtils" />
+	<bean id="springJobFactory" class="com.how2java.task.SpringJobFactory" />
+	<!-- 初始化Scheduler -->
+	<bean id="schedulerFactoryBean"  class="org.springframework.scheduling.quartz.SchedulerFactoryBean" >
+		<property name="jobFactory" ref="springJobFactory" />
+		<!-- 替换默认的jobFactory,以实现job创建时,自动依赖注入功能 -->
+	</bean>
+	<!-- 初始化job  -->
+	<bean id="initQuartzJob" class="com.how2java.task.InitQuartzJob" lazy-init="false" />
 </beans>

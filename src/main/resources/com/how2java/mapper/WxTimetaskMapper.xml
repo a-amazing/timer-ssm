@@ -20,6 +20,7 @@
       <arg column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="modify_user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="modify_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="parameter_classes" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -83,7 +84,7 @@
   <sql id="Base_Column_List">
     id, name, group_name, start_time, end_time, cron, job_status, plan_status, is_concurrent,
     job_data, method_name, bean_name, description, create_user_id, create_date, modify_user_id,
-    modify_date
+    modify_date,parameter_classes
   </sql>
   <select id="selectByExample" parameterType="com.how2java.pojo.WxTimetaskExample" resultMap="BaseResultMap">
     select
@@ -112,7 +113,7 @@
       job_status, plan_status, is_concurrent,
       job_data, method_name, bean_name,
       description, create_user_id, create_date,
-      modify_user_id, modify_date)
+      modify_user_id, modify_date,parameter_classes)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR},
       #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{cron,jdbcType=VARCHAR},
       #{jobStatus,jdbcType=VARCHAR}, #{planStatus,jdbcType=VARCHAR}, #{isConcurrent,jdbcType=BIT},

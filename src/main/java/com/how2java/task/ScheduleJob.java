@@ -1,6 +1,7 @@
 package com.how2java.task;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author:wangyi
@@ -78,6 +79,8 @@ public class ScheduleJob {
 
 
     private String jobData;
+
+    private List<Class> parameterClasses;
 
 
     public String getJobId() {
@@ -182,5 +185,13 @@ public class ScheduleJob {
 
     public void setJobData(String jobData) {
         this.jobData = jobData;
+    }
+
+    public List<Class> getParameterClasses() {
+        return parameterClasses;
+    }
+
+    public void setParameterClasses(List<Class> parameterClasses) {
+        this.parameterClasses = parameterClasses;
     }
 }
